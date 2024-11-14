@@ -26,9 +26,9 @@ export class ApiService {
   }
 
   hapus(id: any, endpoint: string) {
-    return this.http.delete(this.apiURL() + '/' + endpoint + '/' + id);  // Tambahkan '/' sebelum id
+    return this.http.delete(this.apiURL() + '/' + endpoint + '' + id);
   }
-  
+
   lihat(id: any, endpoint: string) {
     return this.http.get(this.apiURL() + '/' + endpoint + '' + id);
   }

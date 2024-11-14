@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
+import { ModalController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mahasiswa',
@@ -7,140 +8,139 @@ import { ApiService } from '../service/api.service';
   styleUrls: ['./mahasiswa.page.scss'],
 })
 export class MahasiswaPage implements OnInit {
-  dataMahasiswa: any[] = [];
+  dataMahasiswa: any;
   modalTambah: boolean = false;
   modalEdit: boolean = false;
   id: any;
   nama: string = '';
   jurusan: string = '';
 
-  constructor(private api: ApiService) { }
+  constructor(
+    private api: ApiService,
+    private modal: ModalController,
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.getMahasiswa();
   }
 
-  // Fetch Mahasiswa data
   getMahasiswa() {
     this.api.tampil('tampil.php').subscribe({
       next: (res: any) => {
-        console.log('Data mahasiswa fetched successfully', res);
+        console.log('sukses', res);
         this.dataMahasiswa = res;
       },
       error: (err: any) => {
-        console.log('Error fetching mahasiswa data', err);
-      }
+        console.log(err);
+      },
     });
   }
 
-  // Reset modal data
   resetModal() {
     this.id = null;
     this.nama = '';
     this.jurusan = '';
   }
 
-  // Open the Add Modal
   openModalTambah(isOpen: boolean) {
     this.modalTambah = isOpen;
-    if (isOpen) {
-      this.resetModal();
-    }
+    this.resetModal();
   }
 
-  // Cancel modal
+  openModalEdit(isOpen: boolean, idget: any) {
+    this.modalEdit = isOpen;
+    this.id = idget;
+    this.ambilMahasiswa(this.id);
+  }
+
   cancel() {
+    this.modal.dismiss();
     this.modalTambah = false;
     this.modalEdit = false;
     this.resetModal();
   }
 
-  // Add a new mahasiswa
   tambahMahasiswa() {
-    if (this.nama !== '' && this.jurusan !== '') {
-      let data = {
-        nama: this.nama,
-        jurusan: this.jurusan
-      };
-
+    if (this.nama && this.jurusan) {
+      let data = { nama: this.nama, jurusan: this.jurusan };
       this.api.tambah(data, 'tambah.php').subscribe({
-        next: (res: any) => {
-          console.log('Mahasiswa added successfully');
+        next: (hasil: any) => {
+          console.log('berhasil tambah mahasiswa');
           this.resetModal();
           this.getMahasiswa();
-          this.modalTambah = false;
+          this.modal.dismiss();
         },
-        error: (err: any) => {
-          console.log('Failed to add mahasiswa', err);
-        }
+        error: () => {
+          console.log('gagal tambah mahasiswa');
+        },
       });
     } else {
-      console.log('Failed to add mahasiswa due to empty fields');
+      console.log('gagal tambah mahasiswa karena masih ada data yg kosong');
     }
   }
 
-  // Delete a mahasiswa
+  async confirmDelete(id: any) {
+    const alert = await this.alertController.create({
+      header: 'Konfirmasi Hapus',
+      message: 'Apakah data ingin dihapus?',
+      buttons: [
+        {
+          text: 'Tidak',
+          role: 'cancel',
+          handler: () => {
+            console.log('Hapus dibatalkan');
+          },
+        },
+        {
+          text: 'Ya',
+          handler: () => {
+            this.hapusMahasiswa(id);
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
   hapusMahasiswa(id: any) {
-    console.log('Menghapus mahasiswa dengan ID:', id);  // Menambahkan log untuk memastikan ID yang dikirim
-    this.api.hapus(id, 'hapus.php').subscribe({
-      next: (res: any) => {
-        console.log('Mahasiswa deleted successfully');
+    this.api.hapus(id, 'hapus.php?id=').subscribe({
+      next: () => {
+        console.log('berhasil hapus data');
         this.getMahasiswa();
       },
-      error: (err: any) => {
-        console.log('Failed to delete mahasiswa', err);
-      }
-    });
-  }
-  
-  // Get details of a mahasiswa for editing
-  ambilMahasiswa(id: any) {
-    this.api.lihat(id, 'lihat.php').subscribe({
-      next: (res: any) => {
-        console.log('Mahasiswa details fetched successfully', res);
-        this.id = res.id;
-        this.nama = res.nama;
-        this.jurusan = res.jurusan;
+      error: () => {
+        console.log('gagal hapus data');
       },
-      error: (err: any) => {
-        console.log('Failed to fetch mahasiswa details', err);
-      }
     });
   }
 
-  // Open the Edit Modal and fetch data for editing
-  openModalEdit(isOpen: boolean, idget: any) {
-    this.modalEdit = isOpen;
-    if (isOpen) {
-      this.id = idget;
-      console.log('Opening edit modal for mahasiswa with ID:', this.id);
-      this.ambilMahasiswa(this.id);
-    }
+  ambilMahasiswa(id: any) {
+    this.api.lihat(id, 'lihat.php?id=').subscribe({
+      next: (hasil: any) => {
+        console.log('sukses', hasil);
+        this.id = hasil.id;
+        this.nama = hasil.nama;
+        this.jurusan = hasil.jurusan;
+      },
+      error: () => {
+        console.log('gagal ambil data');
+      },
+    });
   }
 
-  // Edit an existing mahasiswa
-// Add this to your editMahasiswa method to check if the ID and form data are being passed correctly
-editMahasiswa() {
-  if (this.nama && this.jurusan && this.id) {
-    let data = {
-      id: this.id,
-      nama: this.nama,
-      jurusan: this.jurusan
-    };
-
+  editMahasiswa() {
+    let data = { id: this.id, nama: this.nama, jurusan: this.jurusan };
     this.api.edit(data, 'edit.php').subscribe({
-      next: (res: any) => {
-        console.log('Mahasiswa edited successfully');
+      next: () => {
+        console.log('berhasil edit Mahasiswa');
         this.resetModal();
         this.getMahasiswa();
-        this.modalEdit = false;
+        this.modal.dismiss();
       },
-      error: (err: any) => {
-        console.log('Failed to edit mahasiswa', err);
-      }
+      error: () => {
+        console.log('gagal edit Mahasiswa');
+      },
     });
-  } else {
-    console.log('Invalid data for editing');
   }
-}
 }
