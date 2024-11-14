@@ -40,58 +40,58 @@ Proyek ini adalah aplikasi mobile sederhana yang dikembangkan menggunakan framew
 ## Demo Aplikasi
 
 ### Screenshot Halaman Daftar Mahasiswa (Awal)
-<img src="screenshots/daftar-mahasiswa-awal.png" alt="Screenshot Daftar Mahasiswa Awal" width="200"/>
+<br/><img src="screenshots/daftar-mahasiswa-awal.png" alt="Screenshot Daftar Mahasiswa Awal" width="200"/>
 
 Halaman ini menampilkan daftar mahasiswa yang sudah tersimpan di database. Setiap mahasiswa ditampilkan dengan nama dan jurusan. Di setiap kartu mahasiswa terdapat tombol untuk mengedit dan menghapus data.
 
 ### Screenshot Tambah Data Mahasiswa
 
 1. **Sebelum Menambah Data Mahasiswa**
-   <img src="screenshots/sebelum-tambah-mahasiswa.png" alt="Screenshot Sebelum Tambah Mahasiswa" width="200"/>
+   <br/><img src="screenshots/sebelum-tambah-mahasiswa.png" alt="Screenshot Sebelum Tambah Mahasiswa" width="200"/>
 
    Sebelum menambah data mahasiswa baru, daftar mahasiswa hanya memuat data yang telah tersimpan.
 
 2. **Saat Mengisi Form Tambah Mahasiswa**
-   <img src="screenshots/form-tambah-mahasiswa.png" alt="Screenshot Form Tambah Mahasiswa" width="200"/>
+   <br/><img src="screenshots/form-tambah-mahasiswa.png" alt="Screenshot Form Tambah Mahasiswa" width="200"/>
 
    Pengguna memasukkan nama dan jurusan mahasiswa yang baru. Setelah menekan tombol "Tambah Mahasiswa," data akan dikirim ke server.
 
 3. **Setelah Berhasil Menambah Data Mahasiswa**
-   <img src="screenshots/setelah-tambah-mahasiswa.png" alt="Screenshot Setelah Tambah Mahasiswa" width="200"/>
+   <br/><img src="screenshots/setelah-tambah-mahasiswa.png" alt="Screenshot Setelah Tambah Mahasiswa" width="200"/>
 
    Data mahasiswa yang baru akan ditampilkan pada daftar mahasiswa setelah berhasil ditambahkan.
 
 ### Screenshot Edit Data Mahasiswa
 
 1. **Sebelum Mengedit Data Mahasiswa**
-   <img src="screenshots/sebelum-edit-mahasiswa.png" alt="Screenshot Sebelum Edit Mahasiswa" width="200"/>
+   <br/><img src="screenshots/sebelum-edit-mahasiswa.png" alt="Screenshot Sebelum Edit Mahasiswa" width="200"/>
 
    Data mahasiswa yang ditampilkan sebelum dilakukan pengeditan.
 
 2. **Saat Mengisi Form Edit Mahasiswa**
-   <img src="screenshots/form-edit-mahasiswa.png" alt="Screenshot Form Edit Mahasiswa" width="200"/>
+   <br/><img src="screenshots/form-edit-mahasiswa.png" alt="Screenshot Form Edit Mahasiswa" width="200"/>
 
    Pengguna memperbarui nama atau jurusan mahasiswa di form edit. Setelah menekan tombol "Edit Mahasiswa," data akan diperbarui di server.
 
 3. **Setelah Berhasil Mengedit Data Mahasiswa**
-   <img src="screenshots/setelah-edit-mahasiswa.png" alt="Screenshot Setelah Edit Mahasiswa" width="200"/>
+   <br/><img src="screenshots/setelah-edit-mahasiswa.png" alt="Screenshot Setelah Edit Mahasiswa" width="200"/>
 
    Data mahasiswa yang diperbarui akan ditampilkan pada daftar mahasiswa setelah berhasil disimpan.
 
 ### Screenshot Hapus Data Mahasiswa dengan Konfirmasi
 
 1. **Sebelum Menghapus Data Mahasiswa**
-   <img src="screenshots/sebelum-hapus-mahasiswa.png" alt="Screenshot Sebelum Hapus Mahasiswa" width="200"/>
+   <br/><img src="screenshots/sebelum-hapus-mahasiswa.png" alt="Screenshot Sebelum Hapus Mahasiswa" width="200"/>
 
    Tampilan data mahasiswa yang akan dihapus sebelum proses konfirmasi.
 
 2. **Konfirmasi Hapus Data Mahasiswa**
-   <img src="screenshots/konfirmasi-hapus.png" alt="Screenshot Konfirmasi Hapus" width="200"/>
+   <br/><img src="screenshots/konfirmasi-hapus.png" alt="Screenshot Konfirmasi Hapus" width="200"/>
 
    Konfirmasi hapus muncul untuk memastikan apakah pengguna ingin menghapus data mahasiswa tersebut.
 
 3. **Setelah Berhasil Menghapus Data Mahasiswa**
-   <img src="screenshots/setelah-hapus-mahasiswa.png" alt="Screenshot Setelah Hapus Mahasiswa" width="200"/>
+   <br/><img src="screenshots/setelah-hapus-mahasiswa.png" alt="Screenshot Setelah Hapus Mahasiswa" width="200"/>
 
    Data mahasiswa akan dihapus dari daftar setelah pengguna mengonfirmasi.
 
